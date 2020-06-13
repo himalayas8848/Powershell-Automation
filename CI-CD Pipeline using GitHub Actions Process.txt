@@ -1,0 +1,42 @@
+# Linux and Unix system
+# https://www.youtube.com/watch?v=WTofttoD2xg
+
+1. Create a Githun repostory;
+2. In desktop github folder run git clone https://github.com/himalayas8848/Powershell-Automation.git;
+3. cd into the new created folder;
+4. Create a new enviroment. python3 -m venv my_venv; ls
+5. Activate the enviroment: source my_venv/bin/activate;
+6. pip install flask pytest
+7. Generate the reqirement file: pip freeze > requirements.txt. You can remove the version;
+8. Then make the project structure. mkdir src, in src make file app.py. mkdir tests, in tests make test_app.py;
+9. When running test_app.py, it might have error because it will not find the app.py folder. In test folder do this: export PYTHONPATH=src; Varify by echo $PYTHONPATH;
+10.Add git ignore: vi .gitignore, and add virtual enviroments and catch my_venv/ and __pycache__;
+11.Then git add .; git commit; git push;
+
+12.Go to Action tab. Set up this flow. A yaml file will generated.
+13.Then fetch and merge the yaml by git pull --rebase;
+14.Update any files. Commit. Using glo(git log) to check changes;
+15.git push all changes;
+16.Again in yaml file, export PYTHONPATH=src if there is py test errors;
+#
+# The above is CI
+# Below is CD
+
+17.Using heroku authoriztions:create creates Token.
+18.Put the Token into Github Serets Store: HEROKU_API_TOKEN; and you can create mask for app name;
+19.The add one more step to yaml file;
+20.If Heroku, the Profile needs to be created with "web gunicorn --pythonpath src app:app";
+21.Add gunicorn to reqirements.txt;
+22.And runtime.txt;
+23.Add commit and push.
+24.In github repo, you can see the process detail.
+25. There are errors about show clone. So add git checkout step ---- fetch all history for all tags and branches: 
+	by adding these: -run:| 
+			   git fetch --prune --unshallow
+	to the yaml file steps after actions/checkout@v2.
+
+
+
+
+
+
